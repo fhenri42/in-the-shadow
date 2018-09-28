@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scipt\clasiqueMode.cs" />
+     <Compile Include="Assets\scipt\menu.cs" />
      <Compile Include="Assets\scipt\move.cs" />
+     <Compile Include="Assets\scipt\testMode.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
