@@ -46,7 +46,7 @@ public class move : MonoBehaviour {
   void TaskOnClickNext() {
     if (nameLvl == "lvl0" && "good" == PlayerPrefs.GetString("lvl1", "bad")) { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single); }
     if (nameLvl == "lvl1" && "good" == PlayerPrefs.GetString("lvl2", "bad")) { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single); }
-    if (nameLvl == "lvl2"  && "good" == PlayerPrefs.GetString("lvlBonus", "bad")) { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single); }
+    if (nameLvl == "lvl2"  && "good" == PlayerPrefs.GetString("lvlBonus", "bad")) { StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single); }
     if (nameLvl == "lvlBonus") { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single); }
   }
   void TaskOnClickRestart() {
@@ -179,7 +179,7 @@ public class move : MonoBehaviour {
           if ((tmpy <= 10 || tmpy >= 350) && (tmpx <= 10 || tmpx >= 350) && (tmpz <= 10 || tmpz >= 350)) {
             /* SEE if At the RIGHT PLACE*/
             if (test.transform.position.x  - 1  >= test1.transform.position.x && (test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) ) {
-              if(StaticClass.CrossSceneInformation !="TestMode") { PlayerPrefs.SetString("lvl2", "good"); }
+              if(StaticClass.CrossSceneInformation !="TestMode") { PlayerPrefs.SetString("lvlBonus", "good"); }
                 canMove = false;
                 panel.gameObject.SetActive(true);
 
@@ -201,24 +201,24 @@ public class move : MonoBehaviour {
               if (hitInfo.transform.gameObject.name == "globe_earth") { tmpCurrent = test1; } else if (hitInfo.transform.gameObject.name == "globe_base") {tmpCurrent = test; }
             }
           }
+          //TODO a finir
+          // if (Input.GetButton("Fire1") && isMove && tmpCurrent != null) {
+          //   float v = 0.07F * Input.GetAxis("Mouse X") * -1;
+          //   float h = 0.07F * Input.GetAxis("Mouse Y");
+          //   tmpCurrent.transform.Translate(v, h, 0);
+          // }
+          // if (Input.GetButton("Jump") && isTraslation && tmpCurrent != null) {
+          //   float v = horizontalSpeed * Input.GetAxis("Mouse X");
+          //   float h = verticalSpeed * Input.GetAxis("Mouse Y");
+          //   tmpCurrent.transform.Rotate(0, v, 0);
+          // }
+          // if (Input.GetButton("Fire2") && isRotaiton && tmpCurrent != null) {
+          //   float v = horizontalSpeed * Input.GetAxis("Mouse X");
+          //   float h = verticalSpeed * Input.GetAxis("Mouse Y");
+          //   tmpCurrent.transform.Rotate(0, h, 0);
+          // }
 
-          if (Input.GetButton("Fire1") && isMove && tmpCurrent != null) {
-            float v = 0.07F * Input.GetAxis("Mouse X") * -1;
-            float h = 0.07F * Input.GetAxis("Mouse Y");
-            tmpCurrent.transform.Translate(v, h, 0);
-          }
-          if (Input.GetButton("Jump") && isTraslation && tmpCurrent != null) {
-            float v = horizontalSpeed * Input.GetAxis("Mouse X");
-            float h = verticalSpeed * Input.GetAxis("Mouse Y");
-            tmpCurrent.transform.Rotate(0, v, 0);
-          }
-          if (Input.GetButton("Fire2") && isRotaiton && tmpCurrent != null) {
-            float v = horizontalSpeed * Input.GetAxis("Mouse X");
-            float h = verticalSpeed * Input.GetAxis("Mouse Y");
-            tmpCurrent.transform.Rotate(0, 0, h);
-          }
-
-              if ((test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) && (test.transform.position.x >= test1.transform.position.x + 3  && test.transform.position.x <= test1.transform.position.x - 3)) {
+              if ((test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) && (test.transform.position.x >= test1.transform.position.x  && test.transform.position.x <= test1.transform.position.x + 2)) {
                 // PlayerPrefs.SetString("lvlBonus", "good");
                 // canMove = false;
                 // panel.gameObject.SetActive(true);
