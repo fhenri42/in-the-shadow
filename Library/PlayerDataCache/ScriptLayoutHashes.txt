@@ -6,6 +6,7 @@ Assets/Scenes/lvl0.unity
 Assets/Scenes/lvl1.unity
 Assets/Scenes/lvl3.unity
 Assets/Scenes/testMode.unity
+Assets/Scenes/lvlBonus.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack

@@ -44,17 +44,17 @@ public class move : MonoBehaviour {
   }
 
   void TaskOnClickNext() {
-    if (nameLvl == "lvl0" && "good" == PlayerPrefs.GetString("lvl1", "bad")) { SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single); }
-    if (nameLvl == "lvl1" && "good" == PlayerPrefs.GetString("lvl2", "bad")) { SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single); }
-    if (nameLvl == "lvl2"  && "good" == PlayerPrefs.GetString("lvlBonus", "bad")) { SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single); }
-    if (nameLvl == "lvlBonus") { SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single); }
+    if (nameLvl == "lvl0" && "good" == PlayerPrefs.GetString("lvl1", "bad")) { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single); }
+    if (nameLvl == "lvl1" && "good" == PlayerPrefs.GetString("lvl2", "bad")) { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single); }
+    if (nameLvl == "lvl2"  && "good" == PlayerPrefs.GetString("lvlBonus", "bad")) { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single); }
+    if (nameLvl == "lvlBonus") { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single); }
   }
   void TaskOnClickRestart() {
 
-    if (nameLvl == "lvl0") { SceneManager.LoadScene("Scenes/lvl1", LoadSceneMode.Single); }
-    if (nameLvl == "lvl1") { SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single); }
-    if (nameLvl == "lvl2") { SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single); }
-    if (nameLvl == "lvlBonus") { SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single); }
+    if (nameLvl == "lvl0") { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl1", LoadSceneMode.Single); }
+    if (nameLvl == "lvl1") { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single); }
+    if (nameLvl == "lvl2") { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single); }
+    if (nameLvl == "lvlBonus") { 			StaticClass.CrossSceneInformation = "claMode"; SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single); }
   }
 
   void TaskOnClickHome() {
@@ -96,7 +96,7 @@ public class move : MonoBehaviour {
         test.transform.Rotate(0, v, 0);
       }
       if (nameLvl == "lvl0" && test.transform.rotation.eulerAngles.y <= 360 && test.transform.rotation.eulerAngles.y >= 350) {
-        PlayerPrefs.SetString("lvl1", "good");
+        if (StaticClass.CrossSceneInformation != "TestMode") { PlayerPrefs.SetString("lvl1", "good"); }
         canMove = false;
         panel.gameObject.SetActive(true);
       }
@@ -179,9 +179,7 @@ public class move : MonoBehaviour {
           if ((tmpy <= 10 || tmpy >= 350) && (tmpx <= 10 || tmpx >= 350) && (tmpz <= 10 || tmpz >= 350)) {
             /* SEE if At the RIGHT PLACE*/
             if (test.transform.position.x  - 1  >= test1.transform.position.x && (test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) ) {
-              if(StaticClass.CrossSceneInformation !="TestMode") {
-
-                PlayerPrefs.SetString("lvl2", "good"); }
+              if(StaticClass.CrossSceneInformation !="TestMode") { PlayerPrefs.SetString("lvl2", "good"); }
                 canMove = false;
                 panel.gameObject.SetActive(true);
 
@@ -220,38 +218,12 @@ public class move : MonoBehaviour {
             tmpCurrent.transform.Rotate(0, 0, h);
           }
 
-          float tmpx = test.transform.eulerAngles.x;
-          float tmpy = test.transform.eulerAngles.y;
-          float tmpz = test.transform.eulerAngles.z;
-          float tmpx1 = test1.transform.eulerAngles.x;
-          float tmpy1 = test1.transform.eulerAngles.y;
-          float tmpz1 = test1.transform.eulerAngles.z;
-          if (tmpx < 0) { tmpx = 360 - tmpx; }
-          if (tmpy < 0) { tmpy = 360 - tmpy; }
-          if (tmpy < 0) { tmpy = 360 - tmpy; }
-          if (tmpx1 < 0) { tmpx1 = 360 - tmpx1; }
-          if (tmpy1 < 0) { tmpy1 = 360 - tmpy1; }
-          if (tmpz1 < 0) { tmpz1 = 360 - tmpz1; }
-
-
-          //TODO A FINI
-          /* BASE */
-//          if (((tmpx1 <= 10 || tmpx1 >= 350) && (tmpy1 <= 10 || tmpy1 >= 350) && (tmpz1 <= 10 || tmpz1 >= 350)) || ((tmpx1 <= 10 || tmpx1 >= 350) && (tmpy1 <= 10 || tmpy1 >= 350) && (tmpz1 <= 190 && tmpz1 <= 200))) {
-
-            /* THE 4 */
-             /* GLOBE */
-            if (((tmpx1 >= 80 && tmpx1 <= 100) || (tmpx1 >= 260 && tmpx1 <= 280)) && tmpy1 >= 170 && tmpy1 <= 190 && tmpz1 >= 170 && tmpz1 <= 190) {
-              print("GLOBEGOOd");
-              /* SEE if At the RIGHT PLACE*/
-              if (test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) {
+              if ((test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) && (test.transform.position.x >= test1.transform.position.x + 3  && test.transform.position.x <= test1.transform.position.x - 3)) {
                 // PlayerPrefs.SetString("lvlBonus", "good");
                 // canMove = false;
                 // panel.gameObject.SetActive(true);
                 print("ICI");
               }
-            }
-          //}
-
         }
       }
     }

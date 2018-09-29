@@ -51,29 +51,36 @@ public class clasiqueMode : MonoBehaviour {
 	void Update () { }
 
 	void TaskOnClicklvl0() {
-		print("ICIC");
+		StaticClass.CrossSceneInformation = "claMode";
+
 		SceneManager.LoadScene("Scenes/lvl1", LoadSceneMode.Single);
 	}
 	void TaskOnClicklvl1() {
 		string goodtogo = PlayerPrefs.GetString("lvl1", "bad");
 		if (goodtogo == "good") {
 			print("yes all good");
+			StaticClass.CrossSceneInformation = "claMode";
+
 			SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single);
 		}
 	}
 	void TaskOnClicklvl2() {
 		string goodtogo = PlayerPrefs.GetString("lvl2", "bad");
 		if (goodtogo == "good") {
+			StaticClass.CrossSceneInformation = "claMode";
+
 			SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single);
 		}
 	}
 	void TaskOnClicklvlBonus() {
 		string goodtogo = PlayerPrefs.GetString("lvlBonus", "bad");
 		if (goodtogo == "good") {
+			StaticClass.CrossSceneInformation = "claMode";
 			SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single);
 		}
 	}
 	void TaskOnClickbackMenu() {
+		StaticClass.CrossSceneInformation = "claMode";
 		SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single);
 	}
 }
