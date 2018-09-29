@@ -9,19 +9,19 @@ public class clasiqueMode : MonoBehaviour {
 	public Button lvl0;
 	public Button lvl1;
 	public Button lvl2;
+	public Button lvlBonus;
 	public Button charge;
 	public Button charge1;
+	public Button chargeBonus;
 	public Button backMenu;
-	// Use this for initialization
 
 	void Start () {
 		lvl0.onClick.AddListener(TaskOnClicklvl0);
 		lvl1.onClick.AddListener(TaskOnClicklvl1);
 		lvl2.onClick.AddListener(TaskOnClicklvl2);
+		lvlBonus.onClick.AddListener(TaskOnClicklvlBonus);
 		backMenu.onClick.AddListener(TaskOnClickbackMenu);
 
-  //  ColorBlock cb = lvl0.colors;
-		//cb.normalColor = Color.green;
 		lvl0.GetComponent<Image>().color = Color.green;
 		if ("good" == PlayerPrefs.GetString("lvl1", "bad")) {
 			lvl1.GetComponent<Image>().color = Color.green;
@@ -37,14 +37,19 @@ public class clasiqueMode : MonoBehaviour {
 		} else {
 			lvl2.GetComponent<Image>().color = Color.red;
 			lvl2.GetComponent<Button>().interactable = false;
+		}
 
+		if ("good" == PlayerPrefs.GetString("lvlBonus", "bad")) {
+			chargeBonus.GetComponent<Image>().color = Color.green;
+			lvlBonus.GetComponent<Image>().color = Color.green;
+		} else {
+			lvlBonus.GetComponent<Image>().color = Color.red;
+			lvlBonus.GetComponent<Button>().interactable = false;
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
+	void Update () { }
 
-	}
 	void TaskOnClicklvl0() {
 		print("ICIC");
 		SceneManager.LoadScene("Scenes/lvl1", LoadSceneMode.Single);
@@ -62,8 +67,13 @@ public class clasiqueMode : MonoBehaviour {
 			SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single);
 		}
 	}
-	void TaskOnClickbackMenu(){
-		 SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single);
-
+	void TaskOnClicklvlBonus() {
+		string goodtogo = PlayerPrefs.GetString("lvlBonus", "bad");
+		if (goodtogo == "good") {
+			SceneManager.LoadScene("Scenes/lvlBonus", LoadSceneMode.Single);
+		}
+	}
+	void TaskOnClickbackMenu() {
+		SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single);
 	}
 }
