@@ -1,7 +1,7 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{9F751AE5-7AC4-3CF9-5FA2-9676ADC84B29}") = "In-the-shadow", "Assembly-CSharp.csproj", "{4C88DB05-2E7D-705D-B2DE-2D273CA9E957}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "in-the-shadow", "Assembly-CSharp.csproj", "{F146E943-E1A8-14AC-8B81-8FA0752A75C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C88DB05-2E7D-705D-B2DE-2D273CA9E957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C88DB05-2E7D-705D-B2DE-2D273CA9E957}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C88DB05-2E7D-705D-B2DE-2D273CA9E957}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C88DB05-2E7D-705D-B2DE-2D273CA9E957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F146E943-E1A8-14AC-8B81-8FA0752A75C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F146E943-E1A8-14AC-8B81-8FA0752A75C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F146E943-E1A8-14AC-8B81-8FA0752A75C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F146E943-E1A8-14AC-8B81-8FA0752A75C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +36,4 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
-
 EndGlobal

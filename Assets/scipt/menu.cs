@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
- // using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 
 public class menu : MonoBehaviour {
@@ -22,16 +22,14 @@ public class menu : MonoBehaviour {
 	void Update () {
 	}
 	void TaskOnClick() {
-		// SceneManager.LoadScene("Scenes/clasiqueMode", LoadSceneMode.Single);
+		SceneManager.LoadScene("Scenes/classiqueMode", LoadSceneMode.Single);
 
-		print("MDDDr");
 	}
 	void TaskOnClickTest() {
-	 // SceneManager.LoadScene("Scenes/testMode", LoadSceneMode.Single);
-		print("MDDDr");
+	 SceneManager.LoadScene("Scenes/testMode", LoadSceneMode.Single);
 	}
 	void TaskOnClickReset() {
-		print("ici");
+		print("start  a reste of the data");
 		PlayerPrefs.DeleteAll();
 
 	}

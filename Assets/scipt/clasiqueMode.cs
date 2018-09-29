@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
-// using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 
 public class clasiqueMode : MonoBehaviour {
@@ -10,12 +9,36 @@ public class clasiqueMode : MonoBehaviour {
 	public Button lvl0;
 	public Button lvl1;
 	public Button lvl2;
+	public Button charge;
+	public Button charge1;
+	public Button backMenu;
 	// Use this for initialization
 
 	void Start () {
 		lvl0.onClick.AddListener(TaskOnClicklvl0);
 		lvl1.onClick.AddListener(TaskOnClicklvl1);
 		lvl2.onClick.AddListener(TaskOnClicklvl2);
+		backMenu.onClick.AddListener(TaskOnClickbackMenu);
+
+  //  ColorBlock cb = lvl0.colors;
+		//cb.normalColor = Color.green;
+		lvl0.GetComponent<Image>().color = Color.green;
+		if ("good" == PlayerPrefs.GetString("lvl1", "bad")) {
+			lvl1.GetComponent<Image>().color = Color.green;
+			charge.GetComponent<Image>().color = Color.green;
+		} else {
+			lvl1.GetComponent<Image>().color = Color.red;
+			lvl1.GetComponent<Button>().interactable = false;
+		}
+
+		if ("good" == PlayerPrefs.GetString("lvl2", "bad")) {
+			charge1.GetComponent<Image>().color = Color.green;
+			lvl2.GetComponent<Image>().color = Color.green;
+		} else {
+			lvl2.GetComponent<Image>().color = Color.red;
+			lvl2.GetComponent<Button>().interactable = false;
+
+		}
 	}
 
 	// Update is called once per frame
@@ -24,22 +47,23 @@ public class clasiqueMode : MonoBehaviour {
 	}
 	void TaskOnClicklvl0() {
 		print("ICIC");
-		// SceneManager.LoadScene("Scenes/lvl1", LoadSceneMode.Single);
+		SceneManager.LoadScene("Scenes/lvl1", LoadSceneMode.Single);
 	}
 	void TaskOnClicklvl1() {
 		string goodtogo = PlayerPrefs.GetString("lvl1", "bad");
 		if (goodtogo == "good") {
-			//LoadScene
 			print("yes all good");
+			SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single);
 		}
-		print(goodtogo);
-		// SceneManager.LoadScene("Scenes/lvl0", LoadSceneMode.Single);
 	}
 	void TaskOnClicklvl2() {
 		string goodtogo = PlayerPrefs.GetString("lvl2", "bad");
 		if (goodtogo == "good") {
-			//LoadScene
+			SceneManager.LoadScene("Scenes/lvl3", LoadSceneMode.Single);
 		}
-		// SceneManager.LoadScene("Scenes/lvl2", LoadSceneMode.Single);
+	}
+	void TaskOnClickbackMenu(){
+		 SceneManager.LoadScene("Scenes/menu", LoadSceneMode.Single);
+
 	}
 }
