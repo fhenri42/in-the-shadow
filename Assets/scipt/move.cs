@@ -10,7 +10,7 @@ public class move : MonoBehaviour {
   /* TODO
   1) finir 1 lvl
   4) faire 3 lvl de difficulter
-  2) faire le Menu (prendre le menu de hotlineMiami le ruch)
+  2) faire le Menu
   3) faire les 2 mode
   5) Rendre
   */
@@ -19,7 +19,7 @@ public class move : MonoBehaviour {
   public GameObject test1;
   public GameObject tmpCurrent;
   public GameObject panel;
-  //public GameObject result;
+  public GameObject textVictory;
 
 
   public Button nextGame;
@@ -40,6 +40,8 @@ public class move : MonoBehaviour {
     restartGame.onClick.AddListener(TaskOnClickRestart);
     backMenu.onClick.AddListener(TaskOnClickHome);
     panel.gameObject.SetActive(false);
+    textVictory.gameObject.SetActive(false);
+
     canMove = true;
   }
 
@@ -81,23 +83,21 @@ public class move : MonoBehaviour {
 
       if (nameLvl == "lvl1" && Input.GetButton("Jump") && isTraslation) {
         float v = horizontalSpeed * Input.GetAxis("Mouse X");
-        float h = verticalSpeed * Input.GetAxis("Mouse Y");
         test.transform.Rotate(0, 0, v);
       }
       if (nameLvl== "lvl1" && Input.GetButton("Fire2") && isRotaiton) {
-        float v = horizontalSpeed * Input.GetAxis("Mouse X");
         float h = verticalSpeed * Input.GetAxis("Mouse Y");
         test.transform.Rotate(0, h, 0);
       }
 
       if (nameLvl== "lvl0" && Input.GetButton("Jump") && isRotaiton) {
         float v = horizontalSpeed * Input.GetAxis("Mouse X");
-        float h = verticalSpeed * Input.GetAxis("Mouse Y");
         test.transform.Rotate(0, v, 0);
       }
       if (nameLvl == "lvl0" && test.transform.rotation.eulerAngles.y <= 360 && test.transform.rotation.eulerAngles.y >= 350) {
         if (StaticClass.CrossSceneInformation != "TestMode") { PlayerPrefs.SetString("lvl1", "good"); }
         canMove = false;
+        textVictory.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
       }
 
@@ -110,12 +110,16 @@ public class move : MonoBehaviour {
       if (nameLvl ==  "lvl1" && tmpx >= 70 && tmpx <= 110  && (tmpy <= 20 || tmpy >= 345) && (tmpz <= 10 || tmpz >= 350)) {
         if (StaticClass.CrossSceneInformation != "TestMode") { PlayerPrefs.SetString("lvl2", "good"); }
         canMove = false;
+        textVictory.gameObject.SetActive(true);
+
         panel.gameObject.SetActive(true);
       }
 
       if (nameLvl ==  "lvl1" && tmpx >= 70 && tmpx <= 110  && (tmpy >= 0  && tmpy <= 60) && (tmpz >= 50 && tmpz <= 70)) {
         if(StaticClass.CrossSceneInformation !="TestMode") { PlayerPrefs.SetString("lvl2", "good"); }
         canMove = false;
+        textVictory.gameObject.SetActive(true);
+
         panel.gameObject.SetActive(true);
       }
     }
@@ -147,11 +151,9 @@ public class move : MonoBehaviour {
         }
         if (Input.GetButton("Jump") && isTraslation && tmpCurrent != null) {
           float v = horizontalSpeed * Input.GetAxis("Mouse X");
-          float h = verticalSpeed * Input.GetAxis("Mouse Y");
           tmpCurrent.transform.Rotate(0, v, 0);
         }
         if (Input.GetButton("Fire2") && isRotaiton && tmpCurrent != null) {
-          float v = horizontalSpeed * Input.GetAxis("Mouse X");
           float h = verticalSpeed * Input.GetAxis("Mouse Y");
           tmpCurrent.transform.Rotate(0, 0, h);
         }
@@ -180,50 +182,49 @@ public class move : MonoBehaviour {
             /* SEE if At the RIGHT PLACE*/
             if (test.transform.position.x  - 1  >= test1.transform.position.x && (test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) ) {
               if(StaticClass.CrossSceneInformation !="TestMode") { PlayerPrefs.SetString("lvlBonus", "good"); }
-                canMove = false;
-                panel.gameObject.SetActive(true);
+              canMove = false;
+              textVictory.gameObject.SetActive(true);
 
-              }
+              panel.gameObject.SetActive(true);
+
             }
           }
         }
-        if (nameLvl == "lvlBonus" && canMove == true) {
+      }
+      if (nameLvl == "lvlBonus" && canMove == true) {
 
-          if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
+        {
+          Debug.Log("Mouse is down");
+
+          RaycastHit hitInfo = new RaycastHit();
+          bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+          if (hit)
           {
-            Debug.Log("Mouse is down");
-
-            RaycastHit hitInfo = new RaycastHit();
-            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
-            if (hit)
-            {
-              Debug.Log("Hit " + hitInfo.transform.gameObject.name);
-              if (hitInfo.transform.gameObject.name == "globe_earth") { tmpCurrent = test1; } else if (hitInfo.transform.gameObject.name == "globe_base") {tmpCurrent = test; }
-            }
+            Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+            if (hitInfo.transform.gameObject.name == "globe_earth") { tmpCurrent = test1; } else if (hitInfo.transform.gameObject.name == "globe_base") {tmpCurrent = test; }
           }
-          //TODO a finir
-          // if (Input.GetButton("Fire1") && isMove && tmpCurrent != null) {
-          //   float v = 0.07F * Input.GetAxis("Mouse X") * -1;
-          //   float h = 0.07F * Input.GetAxis("Mouse Y");
-          //   tmpCurrent.transform.Translate(v, h, 0);
-          // }
-          // if (Input.GetButton("Jump") && isTraslation && tmpCurrent != null) {
-          //   float v = horizontalSpeed * Input.GetAxis("Mouse X");
-          //   float h = verticalSpeed * Input.GetAxis("Mouse Y");
-          //   tmpCurrent.transform.Rotate(0, v, 0);
-          // }
-          // if (Input.GetButton("Fire2") && isRotaiton && tmpCurrent != null) {
-          //   float v = horizontalSpeed * Input.GetAxis("Mouse X");
-          //   float h = verticalSpeed * Input.GetAxis("Mouse Y");
-          //   tmpCurrent.transform.Rotate(0, h, 0);
-          // }
+        }
+        //TODO a finir
+        if (Input.GetButton("Fire1") && isMove && tmpCurrent != null) {
+          float v = 0.07F * Input.GetAxis("Mouse X") * -1;
+          float h = 0.07F * Input.GetAxis("Mouse Y");
+          if (tmpCurrent.name == "globe_base") {
+            tmpCurrent.transform.Translate(v, h, 0);
+          } else {
+            tmpCurrent.transform.Translate(v, 0, 0);
 
-              if ((test.transform.position.y <= test1.transform.position.y + 0.5 &&  test.transform.position.y >= test1.transform.position.y - 0.5) && (test.transform.position.x >= test1.transform.position.x  && test.transform.position.x <= test1.transform.position.x + 2)) {
-                // PlayerPrefs.SetString("lvlBonus", "good");
-                // canMove = false;
-                // panel.gameObject.SetActive(true);
-                print("ICI");
-              }
+          }
+        }
+
+        if ((test.transform.position.x -1.5 > test1.transform.position.x && test.transform.position.x - 3 < test1.transform.position.x) &&
+        test1.transform.position.y > test.transform.position.y && test1.transform.position.y  < test.transform.position.y + 0.3)
+        {
+          PlayerPrefs.SetString("lvlBonus", "good");
+          canMove = false;
+          textVictory.gameObject.SetActive(true);
+          panel.gameObject.SetActive(true);
         }
       }
     }
+  }
